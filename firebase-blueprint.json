@@ -1,0 +1,235 @@
+{
+  "entities": {
+    "UserSettings": {
+      "title": "UserSettings",
+      "description": "Cloud-synced user preferences, theme comfort mode, Quran isolation toggle, and 5-band Equalizer configuration.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated owner UID matching request.auth.uid."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name."
+        },
+        "languageCode": {
+          "type": "string",
+          "enum": ["ar", "en"],
+          "description": "Preferred UI language code."
+        },
+        "darkTheme": {
+          "type": "boolean",
+          "description": "Whether night mode is enabled."
+        },
+        "eyeComfortMode": {
+          "type": "boolean",
+          "description": "Whether warm amber eye-comfort filter is active."
+        },
+        "autoIsolateQuran": {
+          "type": "boolean",
+          "description": "Automatically classify and isolate Holy Quran recitations from music."
+        },
+        "eqPreset": {
+          "type": "string",
+          "enum": ["FLAT", "WARM_OUD", "BASS_BOOST", "VOCAL_CLEAR", "NIGHT_COMFORT", "CLASSICAL", "CUSTOM"],
+          "description": "Selected equalizer preset identifier."
+        },
+        "eqBands": {
+          "type": "array",
+          "description": "5-band equalizer levels in millibels."
+        },
+        "bassBoostStrength": {
+          "type": "integer",
+          "description": "Bass boost strength from 0 to 1000."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp written via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "languageCode",
+        "darkTheme",
+        "eyeComfortMode",
+        "autoIsolateQuran",
+        "eqPreset",
+        "eqBands",
+        "bassBoostStrength",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CloudTrack": {
+      "title": "CloudTrack",
+      "description": "Cloud-synced audio track metadata, lyrics, classification category, and Quran isolation state.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated owner UID matching request.auth.uid."
+        },
+        "title": {
+          "type": "string",
+          "description": "Editable song or recitation title."
+        },
+        "artist": {
+          "type": "string",
+          "description": "Editable artist or reciter name."
+        },
+        "album": {
+          "type": "string",
+          "description": "Editable album or Mushaf collection name."
+        },
+        "genre": {
+          "type": "string",
+          "description": "Editable musical genre or recitation style."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["ARABIC_TARAB", "CHILL_NIGHT", "CLASSICAL", "ENERGETIC", "PODCAST", "OTHER_MUSIC", "QURAN"],
+          "description": "File classification category."
+        },
+        "quranAudio": {
+          "type": "boolean",
+          "description": "True if and only if category == QURAN, isolating file from music playback and AI music recommendations."
+        },
+        "durationMs": {
+          "type": "integer",
+          "description": "Duration in milliseconds."
+        },
+        "sourceType": {
+          "type": "string",
+          "enum": ["STUDIO_STARTER", "LOCAL_URI", "STREAM_URL", "EXTERNAL_IMPORT"],
+          "description": "Origin type of the audio track."
+        },
+        "sourceUri": {
+          "type": "string",
+          "description": "Local URI, starter key, or stream URL."
+        },
+        "lyrics": {
+          "type": "string",
+          "description": "Downloaded or user-edited plain/LRC lyrics."
+        },
+        "favorite": {
+          "type": "boolean",
+          "description": "Whether marked as favorite."
+        },
+        "playCount": {
+          "type": "integer",
+          "description": "Number of times played for music taste profiling."
+        },
+        "accentHex": {
+          "type": "string",
+          "description": "Hex color code for track artwork accent."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp written via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "title",
+        "artist",
+        "album",
+        "genre",
+        "category",
+        "quranAudio",
+        "durationMs",
+        "sourceType",
+        "sourceUri",
+        "lyrics",
+        "favorite",
+        "playCount",
+        "accentHex",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CloudPlaylist": {
+      "title": "CloudPlaylist",
+      "description": "Custom or externally imported playlist synced across user devices.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated owner UID matching request.auth.uid."
+        },
+        "name": {
+          "type": "string",
+          "description": "Playlist title."
+        },
+        "description": {
+          "type": "string",
+          "description": "Playlist description."
+        },
+        "trackIds": {
+          "type": "array",
+          "description": "Ordered list of track document IDs (max 200)."
+        },
+        "sourceApp": {
+          "type": "string",
+          "description": "Origin app name (e.g., Nagham, M3U Import, External Share)."
+        },
+        "quranPlaylist": {
+          "type": "boolean",
+          "description": "True if dedicated to Holy Quran Surahs, isolated from music playlists."
+        },
+        "coverHex": {
+          "type": "string",
+          "description": "Hex color accent for playlist card."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp written via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "name",
+        "description",
+        "trackIds",
+        "sourceApp",
+        "quranPlaylist",
+        "coverHex",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserSettings",
+      "description": "Per-user settings, theme, language, and equalizer configuration."
+    },
+    "/users/{userId}/tracks/{trackId}": {
+      "schema": "CloudTrack",
+      "description": "Per-user cloud-synced audio tracks, edited tags, lyrics, and Quran isolation metadata."
+    },
+    "/users/{userId}/playlists/{playlistId}": {
+      "schema": "CloudPlaylist",
+      "description": "Per-user custom and externally imported playlists."
+    }
+  }
+}

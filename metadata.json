@@ -1,0 +1,6 @@
+{
+  "name": "Nagham Player",
+  "description": "مشغل موسيقى عصري ثنائي اللغة (العربية والإنجليزية) يدعم قوائم التشغيل المخصصة، المزامنة السحابية، التوصيات الذكية، موازن الصوت، تعديل الكلمات والتفاصيل، وعزل ملفات القرآن الكريم.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
